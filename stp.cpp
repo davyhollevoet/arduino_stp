@@ -41,6 +41,11 @@ void STP::enable() {
     dev.read();
 }
 
+void STP::disable() {
+    dev.write(STP_CMD_DISABLE);
+    dev.read();
+}
+
 uint32_t STP::get_info(uint8_t query) {
 
     if (query < 0x10) {
@@ -137,4 +142,8 @@ void STP::read_ext_buttons_mode(STP::AbsState &state) {
     state.y = (((uint16_t) (b4 & 0x20)) << 7) | (((uint16_t) (b2 & 0xf0)) << 4) | (b6 & ~mask);
     state.w = ((b1 & 0x30) >> 2) | ((b1 & 0x4) >> 1) | ((b4 & 0x4) >> 2);
     state.z = b3;
+}
+
+uint8_t STP::n_extended_buttons() const {
+    return n_extbut;
 }

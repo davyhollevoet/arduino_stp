@@ -3,8 +3,10 @@ AbsState	KEYWORD1
 reset	KEYWORD2
 init	KEYWORD2
 enable	KEYWORD2
+disable	KEYWORD2
 set_resolution	KEYWORD2
 set_sample_rate	KEYWORD2
 set_byte_mode	KEYWORD2
 read_ext_buttons_mode	KEYWORD2
 get_info	KEYWORD2
+n_extended_buttons	KEYWORD2

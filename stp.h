@@ -28,6 +28,8 @@ public:
 
     void enable();
 
+    void disable();
+
     void set_resolution(uint8_t res);
 
     void set_sample_rate(uint8_t rate);
@@ -37,6 +39,8 @@ public:
     void read_ext_buttons_mode(AbsState &state);
 
     uint32_t get_info(uint8_t query);
+
+    uint8_t n_extended_buttons() const;
 
 private:
     PS2 &dev;
@@ -49,6 +53,7 @@ private:
 
 #define STP_CMD_RESET       0xFF
 #define STP_CMD_ENABLE      0xF4
+#define STP_CMD_DISABLE     0xF5
 #define STP_CMD_SET_RES     0xE8
 #define STP_CMD_SET_SAMP    0xF3
 #define STP_CMD_STAT_REQ    0xE9
