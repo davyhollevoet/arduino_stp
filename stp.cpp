@@ -17,7 +17,6 @@ void STP::set_resolution(uint8_t res) {
     dev.read();  // ack
 }
 
-
 void STP::set_sample_rate(uint8_t rate) {
     dev.write(STP_CMD_SET_SAMP);
     dev.read();  // ack
@@ -76,7 +75,6 @@ void STP::init(uint8_t mode) {
             extbut_mask = (1 << mask_width) - 1;
         }
 
-        uint8_t mode = 0x81; //Absolute mode with W
         if (mode) {
             set_byte_mode(mode);
         }
