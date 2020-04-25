@@ -69,15 +69,19 @@ void STP::init(uint8_t mode) {
     if (is_synaptics) {
 
         uint32_t cap_info = get_info(STP_INFO_CAPABILITIES);
+
         bool cap_ext = cap_info >> 23;
-        uint8_t n_ext = (cap_info >> 22) & 0x07;
+        if (cap_ext) {
+            //the other bits of cap_info only make sense when cap_ext==1
+            uint8_t n_ext = (cap_info >> 22) & 0x07;
 
-        if (n_ext >= 1) {
-            uint32_t ext_model = get_info(STP_INFO_EXT_MODEL_ID);
-            n_extbut = (ext_model >> 12) & 0x0F;
+            if (n_ext >= 1) {
+                uint32_t ext_model = get_info(STP_INFO_EXT_MODEL_ID);
+                n_extbut = (ext_model >> 12) & 0x0F;
 
-            uint8_t mask_width = (n_extbut + 1) >> 1;
-            extbut_mask = (1 << mask_width) - 1;
+                uint8_t mask_width = (n_extbut + 1) >> 1;
+                extbut_mask = (1 << mask_width) - 1;
+            }
         }
 
         if (mode) {
